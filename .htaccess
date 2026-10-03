@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # If file exists in public directory, serve it
+    RewriteCond %{REQUEST_URI} !^/waseela-harmain/public/
+    RewriteCond %{DOCUMENT_ROOT}/waseela-harmain/public/$1 -f
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Otherwise forward all requests to public/index.php
+    RewriteCond %{REQUEST_URI} !^/waseela-harmain/public/
+    RewriteRule ^(.*)$ public/index.php [L]
+</IfModule>
